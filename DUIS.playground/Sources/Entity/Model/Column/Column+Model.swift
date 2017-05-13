@@ -10,12 +10,3 @@ public struct Column: SprintColumn {
     }
 }
 
-public enum ColumnStatus {
-    case backLog
-    case notStarted
-    case starting
-    case readyForTest
-    case inTest
-    case pmVerification
-    case done
-}

@@ -58,3 +58,14 @@ extension Iteration {
         return false
     }
 }
+
+extension Iteration {
+     // MARK: - get iteration points
+    public func getPoints() -> Int {
+        var points = 0
+        for i in 0...cards.count {
+            points = points + cards[i].estimatedPoint
+        }
+        return points
+    }
+}

@@ -31,8 +31,6 @@ var thirdCard = Card(title: "color blending pittfall", description: "profile the
 thirdCard.column = doneColumn
 
 
-let board  = Board(columns: columns)
-
 var iteration = Iteration()
 // MARK: - add cards
 iteration.addCard(card: firstCard)
@@ -50,6 +48,10 @@ iteration.getCard(status: .readyForTest)
 iteration.undoLastMove()
 // MARK: - get card from moved column
 iteration.getCard(status: .done)
+
+let board  = try? Board(iteration: iteration, columns: columns)
+
+
 
 // MARK: - tests scenarios
 func testVelocity() {
