@@ -6,13 +6,3 @@ protocol SprintCard {
     var column: Column? { get set }
 }
 
-
-public enum ColumnStatus {
-    case backLog
-    case notStarted
-    case starting
-    case readyForTest
-    case inTest
-    case pmVerification
-    case done
-}

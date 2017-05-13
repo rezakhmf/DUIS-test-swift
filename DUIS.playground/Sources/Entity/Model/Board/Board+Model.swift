@@ -6,4 +6,6 @@ public struct Board: SprintBoard {
     public init(columns: [Column]) {
         self.columns = columns
     }
+    
 }
+
