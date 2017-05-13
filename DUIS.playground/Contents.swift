@@ -32,10 +32,16 @@ thirdCard.column = doneColumn
 
 
 var iteration = Iteration()
+
+var listOfCards: [Card] = [firstCard, secondCard, thirdCard]
+//
 // MARK: - add cards
-iteration.addCard(card: firstCard)
-iteration.addCard(card: secondCard)
-iteration.addCard(card: thirdCard)
+do {
+    try iteration.add(listOfCards: listOfCards)
+} catch BoardError.moreThanBoardCapicity(let errorMessage) {
+    print(errorMessage)
+}
+
 // MARK: - get velocity
 iteration.velocity()
 // MARK: - find card based on status
@@ -48,8 +54,12 @@ iteration.getCard(status: .readyForTest)
 iteration.undoLastMove()
 // MARK: - get card from moved column
 iteration.getCard(status: .done)
-
-let board  = try? Board(iteration: iteration, columns: columns)
+// MARK: - set board
+do {
+    let board  = try Board(iteration: iteration, columns: columns)
+} catch BoardError.notEnoughColumns (let errorMessage) {
+    print(errorMessage)
+}
 
 
 
@@ -59,16 +69,16 @@ func testVelocity() {
 }
 
 func testIterrationGetCardShouldReturnDoneSattus() {
-  let cards = iteration.getCard(status: .done)
-  if let cardColumnStatus = cards[0].column {
+    let cards = iteration.getCard(status: .done)
+    if let cardColumnStatus = cards[0].column {
         XCTAssertEqual(ColumnStatus.done, cardColumnStatus.status, "should be in done column")
     }
 }
 
 func testIterrationGetCardShouldReturnDoneColumnName() {
     let cards = iteration.getCard(status: .done)
-     if let cardColumnStatus = cards[0].column {
-      XCTAssertEqual("Task is completed", cardColumnStatus.name, "should be in done column's name")
+    if let cardColumnStatus = cards[0].column {
+        XCTAssertEqual("Task is completed", cardColumnStatus.name, "should be in done column's name")
     }
 }
 // MARK: - tests runner

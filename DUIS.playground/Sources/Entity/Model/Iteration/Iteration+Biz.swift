@@ -16,6 +16,17 @@ extension Iteration {
 }
 
 extension Iteration {
+    // MARK: - get iteration points
+    public func points() -> Int {
+        var points: Int = 0
+         for card in cards {
+            points = points + card.estimatedPoint
+        }
+        return points
+    }
+}
+
+extension Iteration {
     // MARK: - move
     public mutating func move(card: Card, toColumn: Column) -> Bool {
         
@@ -59,13 +70,3 @@ extension Iteration {
     }
 }
 
-extension Iteration {
-     // MARK: - get iteration points
-    public func getPoints() -> Int {
-        var points = 0
-        for i in 0...cards.count {
-            points = points + cards[i].estimatedPoint
-        }
-        return points
-    }
-}

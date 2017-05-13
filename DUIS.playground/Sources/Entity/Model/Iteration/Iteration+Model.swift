@@ -1,6 +1,6 @@
 
 public struct Iteration: SprintIteration {
-    
+   
     public init() {}
     
     var cards: [Card] = [Card]()

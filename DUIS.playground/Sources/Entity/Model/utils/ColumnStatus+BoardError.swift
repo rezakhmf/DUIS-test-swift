@@ -8,7 +8,7 @@ public enum ColumnStatus {
     case done
 }
 
-enum BoardError: Error {
+public enum BoardError: Error {
     
     case notEnoughColumns(String)
     case moreThanBoardCapicity(String)

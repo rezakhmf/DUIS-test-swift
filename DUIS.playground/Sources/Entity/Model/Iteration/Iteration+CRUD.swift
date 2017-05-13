@@ -20,17 +20,22 @@ extension Iteration {
         return candidateCards
         
     }
-
+    
 }
 
 extension Iteration {
-    public mutating func addCard(card: Card) -> Bool {// throws
-//        if(self.getPoints() > 35) {
-//         throw BoardError.notEnoughColumns("the points are more than standard 35 points")
-//        } else {
-        self.cards.append(card)
-        //}
-        return true
+    
+    public mutating func add(listOfCards: [Card]) throws -> Bool {
+        
+        for card in listOfCards {
+            if(self.points() <= 35) {
+                self.cards.append(card)
+            } else {
+                throw BoardError.moreThanBoardCapicity("the points are more than standard board capacity (35 points) ")
+                print("the points are more than standard board capacity (35 points) ")
+                return false
+            }
+        }
+       return true
     }
-
 }
