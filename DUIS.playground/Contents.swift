@@ -34,7 +34,15 @@ thirdCard.column = doneColumn
 var iteration = Iteration()
 
 var listOfCards: [Card] = [firstCard, secondCard, thirdCard]
+
+
 //
+// MARK: - get card from moved column
+do {
+    let board  = try Board(iteration: iteration, columns: columns)
+} catch BoardError.notEnoughColumns (let errorMessage) {
+    print(errorMessage)
+}
 // MARK: - add cards
 do {
     try iteration.add(listOfCards: listOfCards)
@@ -44,22 +52,11 @@ do {
 
 // MARK: - get velocity
 iteration.velocity()
-// MARK: - find card based on status
-iteration.getCard(status: .done)
 // MARK: - move card
 iteration.move(card: thirdCard, toColumn: readyForTestColumn)
 // MARK: - get card
-iteration.getCard(status: .readyForTest)
-// MARK: - undo last move
 iteration.undoLastMove()
-// MARK: - get card from moved column
-iteration.getCard(status: .done)
-// MARK: - set board
-do {
-    let board  = try Board(iteration: iteration, columns: columns)
-} catch BoardError.notEnoughColumns (let errorMessage) {
-    print(errorMessage)
-}
+
 
 
 
